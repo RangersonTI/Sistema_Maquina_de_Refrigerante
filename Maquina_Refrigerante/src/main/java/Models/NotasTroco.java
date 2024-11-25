@@ -1,20 +1,18 @@
-package Models;
-import java.util.List;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+package Models;
 
 /**
  *
  * @author Rangerson TI
  */
-public class Produtos {
+public class NotasTroco {
     public int id;
-    public String nome;
-    public int QtdML;
-    public int QtdEstoque;
-    public Double valor_item;
-    List<Produtos> Produtos;
+    public int qtd_cedula_dez;
+    public int qtd_cedula_cinco;
+    public int qtd_cedula_dois;
+    public int qtd_moeda_um;
+    public int qtd_moeda_cinqueta_cents;
 }
