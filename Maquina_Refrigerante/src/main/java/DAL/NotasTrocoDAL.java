@@ -34,10 +34,10 @@ public class NotasTrocoDAL {
             statement.setInt(4,_troco.qtd_moeda_um);
             statement.setInt(5,_troco.qtd_moeda_cinqueta_cents);
             statement.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso","Informativo",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Tabela de troco atualizada com sucesso","Informativo",JOptionPane.INFORMATION_MESSAGE);
         }
         catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, ex, "Erro ao cadastrar novo produto: ", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, ex, "Erro ao atualizar quantidade de cedulas/moedas: ", JOptionPane.ERROR_MESSAGE);
         }
         finally{
             try {
