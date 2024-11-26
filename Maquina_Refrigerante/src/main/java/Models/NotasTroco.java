@@ -14,5 +14,5 @@ public class NotasTroco {
     public int qtd_cedula_cinco;
     public int qtd_cedula_dois;
     public int qtd_moeda_um;
-    public int qtd_moeda_cinqueta_cents;
+    public int qtd_moeda_cinquenta_cents;
 }

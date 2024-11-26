@@ -48,26 +48,28 @@ public class Maquina_Refrigerante_Admin {
 
                 new ProdutoBLL().CadastrarProduto(_produto);
                 TelaAdministrador();
-                
+
             case "2":
-                System.out.println("\n************ ENTRADA DE TROCO ************\n");
+                NotasTroco _trocoAnterior = new NotasTrocoBLL().BuscarNotasTroco();
                 
-                System.out.print("Notas de 10: (qtd)");
+                System.out.println("\n************ ENTRADA DE TROCO ************\n");
+
+                System.out.print("Notas de 10(qtd): ");
                 _troco.qtd_cedula_dez = ler.nextInt();
 
-                System.out.print("Notas de 5: (qtd)");
+                System.out.print("Notas de 5(qtd): ");
                 _troco.qtd_cedula_cinco = ler.nextInt();
-                
-                System.out.print("Notas de 2: (qtd)");
-                _troco.qtd_cedula_dois = ler.nextInt();
-                
-                System.out.print("Moedas de 1: (qtd)");
-                _troco.qtd_moeda_um = ler.nextInt();
-                
-                System.out.print("Moedas de 50C: (qtd)");
-                _troco.qtd_moeda_cinqueta_cents = ler.nextInt();
 
-                new NotasTrocoBLL().EntradaDeTroco(_troco);
+                System.out.print("Notas de 2(qtd): ");
+                _troco.qtd_cedula_dois = ler.nextInt();
+
+                System.out.print("Moedas de 1(qtd): ");
+                _troco.qtd_moeda_um = ler.nextInt();
+
+                System.out.print("Moedas de 50C(qtd): ");
+                _troco.qtd_moeda_cinquenta_cents = ler.nextInt();
+
+                new NotasTrocoBLL().EntradaDeTroco(_troco, _trocoAnterior);
                 TelaAdministrador();
                 
             case "3":
