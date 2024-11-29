@@ -68,7 +68,7 @@ public class Maquina_Refrigerante_Cliente {
                     Cliente();
                 }
                 else{
-                    System.out.print("\nValor a pagar: ");
+                    System.out.print("Valor a pagar: ");
                     double valor_a_pagar = ler.nextDouble();
                     
                     VendaBLL vendaBLL = new VendaBLL();

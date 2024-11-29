@@ -27,22 +27,23 @@ public class VendaDAL {
     public void RealizarVenda(int _id, Produtos _produto, int qtd_solicitado, double valor_a_pagar){
         try{
             Date dataHoraAtual = new Date();
-            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-mm-dd");
             String data_atual = formato.format(dataHoraAtual);
+            System.out.print("\n\n"+data_atual+"\n\n");
             
             conexao = DriverManager.getConnection(caminho);
-            String sql = "INSERT INTO Venda(cod_produto,qtd_produto,valor_unitario,valor_total,data_venda) VALUES(?,?,?,?,?)";
+            String sql = "INSERT INTO Vendas(cod_produto,qtd_produto,valor_unitario,valor_total,data_venda) VALUES(?,?,?,?,?)";
             PreparedStatement statement = conexao.prepareStatement(sql);
             statement.setInt(1,_produto.id);
             statement.setInt(2,qtd_solicitado);
             statement.setDouble(3,_produto.valor_item);
-            statement.setDouble(3,valor_a_pagar);
-            statement.setString(4,data_atual);
+            statement.setDouble(4,valor_a_pagar);
+            statement.setString(5,data_atual);
             statement.executeUpdate();
             JOptionPane.showMessageDialog(null, "Venda realizada com sucesso","Informativo",JOptionPane.INFORMATION_MESSAGE);
         }
         catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, ex, "Erro ao efetuar venda: "+ex, JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro ao efetuar venda: "+ex, null, JOptionPane.ERROR_MESSAGE);
         }
         finally{
             try {
