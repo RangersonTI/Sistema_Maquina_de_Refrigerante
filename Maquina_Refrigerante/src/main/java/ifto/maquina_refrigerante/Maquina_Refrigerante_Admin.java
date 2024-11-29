@@ -146,7 +146,7 @@ public class Maquina_Refrigerante_Admin {
 
             case "6":
                 new Maquina_Refrigerante_Cliente().Cliente();
-                
+
             default:
                 JOptionPane.showMessageDialog(null, "Opção Inválida", null, JOptionPane.ERROR_MESSAGE);
         }

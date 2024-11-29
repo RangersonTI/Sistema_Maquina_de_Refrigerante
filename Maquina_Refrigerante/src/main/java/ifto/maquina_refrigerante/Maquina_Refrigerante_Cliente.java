@@ -41,5 +41,42 @@ public class Maquina_Refrigerante_Cliente {
             Maquina_Refrigerante_Admin maq_adm = new Maquina_Refrigerante_Admin();
             maq_adm.TelaAdministrador();
         }
+        else{
+            int id_prod=0;
+            
+            try{
+                id_prod = Integer.parseInt(leitura);
+            }
+            catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(null, "A opção informada não é um número.\nPor favor informe um número conforme as opções.", null, JOptionPane.ERROR_MESSAGE);
+            }
+            ProdutosDAL produto_DAL = new ProdutosDAL();
+            Produtos produto = produto_DAL.BuscarProdutoPorID(id_prod);
+
+            if(produto.nome==null){
+                JOptionPane.showMessageDialog(null, "Produto informado é inválido.\nPor favor, tente novamente", null, JOptionPane.ERROR_MESSAGE);
+                Cliente();
+            }
+            else{
+                System.out.print("\nQtd a solicitar: ");
+                int qtd_solicitar = ler.nextInt();
+
+                EstoqueBLL ha_estoque = new EstoqueBLL();
+                
+                if(!ha_estoque.VerificarEstoque(id_prod,qtd_solicitar)){
+                    JOptionPane.showMessageDialog(null, "Quantidade solicitada maior que volume do estoque.", null, JOptionPane.ERROR_MESSAGE);
+                    Cliente();
+                }
+                else{
+                    System.out.print("\nValor a pagar: ");
+                    double valor_a_pagar = ler.nextDouble();
+                    
+                    VendaBLL vendaBLL = new VendaBLL();
+                    vendaBLL.RealizarVenda(id_prod,produto,qtd_solicitar,valor_a_pagar);
+                    
+                }
+            }
+            Cliente();
+        }
     }
 }

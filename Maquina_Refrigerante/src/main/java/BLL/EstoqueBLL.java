@@ -28,4 +28,22 @@ public class EstoqueBLL {
     public void SaidaDeEstoque(){
         
     }
+    
+    public boolean VerificarEstoque(int _id, int qtd_solicitado){
+        if(qtd_solicitado<=0){
+            JOptionPane.showMessageDialog(null, "Quantidade solicitada deve ser maior que 0", null, JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            ProdutosDAL produto_DAL = new ProdutosDAL();
+            Produtos produtos = produto_DAL.BuscarProdutoPorID(_id);
+            
+            if(produtos.QtdEstoque<qtd_solicitado){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+        return true;
+    }
 }
