@@ -38,12 +38,6 @@ public class NotasTrocoDAL {
             statement.setInt(4,_troco.qtd_moeda_um);
             statement.setInt(5,_troco.qtd_moeda_cinquenta_cents);
             statement.executeUpdate();
-
-            System.out.println(_troco.qtd_cedula_dez);
-            System.out.println(_troco.qtd_cedula_cinco);
-            System.out.println(_troco.qtd_cedula_dois);
-            System.out.println(_troco.qtd_moeda_um);
-            System.out.println(_troco.qtd_moeda_cinquenta_cents);
             JOptionPane.showMessageDialog(null, "Tabela de troco atualizada com sucesso","Informativo",JOptionPane.INFORMATION_MESSAGE);
         }
         catch(SQLException ex){

@@ -41,6 +41,7 @@ public class CriarBancoDeDados {
                             + "qtd_produto INT NOT NULL,"
                             + "valor_unitario REAL NOT NULL,"
                             + "valor_total REAL NOT NULL,"
+                            + "valor_troco REAL NOT NULL,"
                             + "data_venda DATETIME NOT NULL)");
 
                     statement.executeUpdate("CREATE TABLE IF NOT EXISTS Caixa"

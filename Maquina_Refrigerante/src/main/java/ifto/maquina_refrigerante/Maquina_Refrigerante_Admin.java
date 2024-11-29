@@ -7,7 +7,9 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 import Models.*;
 import BLL.*;
+import DAL.*;
 import java.io.IOException;
+import java.util.List;
 
 /**
  *
@@ -70,17 +72,78 @@ public class Maquina_Refrigerante_Admin {
                 _troco.qtd_moeda_cinquenta_cents = ler.nextInt();
 
                 new NotasTrocoBLL().EntradaDeTroco(_troco, _trocoAnterior);
+                System.out.println("\n");
                 TelaAdministrador();
-                
+
             case "3":
+                System.out.println("\n************ ALTERAR PREÇO DE PRODUTO ************\n");
+                List<Produtos> listaProdutos = new ProdutoBLL().BuscarProdutos();
+
+                if(listaProdutos.isEmpty()){
+                    JOptionPane.showConfirmDialog(null,"Não há produto cadastrado",null,JOptionPane.PLAIN_MESSAGE);
+                    TelaAdministrador();
+                }
+                else{
+                    for(Produtos produtos: listaProdutos){
+                        System.out.println(""+produtos.id+" - "+produtos.nome+"(R$"+produtos.valor_item+") - (Disp.:"+produtos.QtdEstoque+")");
+                    }
+                    System.out.print("\n\n");
+                }
+                int id = ler.nextInt();
+
+                ProdutosDAL produtoDAL = new ProdutosDAL();
+                Produtos produto = produtoDAL.BuscarProdutoPorID(id);
+
+                System.out.println(produto.QtdEstoque+produto.nome);
+                if(produto.nome==null){
+                    JOptionPane.showMessageDialog(null, "Produto informado é inválido", null, JOptionPane.ERROR_MESSAGE);
+                    TelaAdministrador();
+                }
+                else{
+                    System.out.println("\nNovo valor: ");
+                    double novo_preco = ler.nextDouble();
+
+                    ProdutoBLL atualizar_preco = new ProdutoBLL();
+                    atualizar_preco.EditarPrecoProduto(id,novo_preco);
+                    TelaAdministrador();
+                }
+
                 TelaAdministrador();
-                
+
             case "4":
+                System.out.println("\n************ ENTRADA DE ESTOQUE ************\n");
+                List<Produtos> listaProduto = new ProdutoBLL().BuscarTodosProdutos();
+
+                if(listaProduto.isEmpty()){
+                    JOptionPane.showConfirmDialog(null,"Não há produto cadastrado",null,JOptionPane.PLAIN_MESSAGE);
+                    TelaAdministrador();
+                }
+                else{
+                    for(Produtos produtos: listaProduto){
+                        System.out.println(""+produtos.id+" - "+produtos.nome+"(R$"+produtos.valor_item+") - (Disp.:"+produtos.QtdEstoque+")");
+                    }
+                    System.out.print("\n\n");
+                }
+                int id_prod = ler.nextInt();
+
+                ProdutosDAL produto_DAL = new ProdutosDAL();
+                Produtos produtos = produto_DAL.BuscarProdutoPorID(id_prod);
+
+                if(produtos.nome==null){
+                    JOptionPane.showMessageDialog(null, "Produto informado é inválido", null, JOptionPane.ERROR_MESSAGE);
+                    TelaAdministrador();
+                }
+                else{
+                    System.out.println("\nInforme a Qtd de entrada: ");
+                    int qtd_entrada = ler.nextInt();
+
+                    EstoqueBLL atualizar_estoque = new EstoqueBLL();
+                    atualizar_estoque.EntradaDeEstoque(id_prod,qtd_entrada);
+                }                
                 TelaAdministrador();
-                
             case "5":
                 TelaAdministrador();
-                
+
             case "6":
                 new Maquina_Refrigerante_Cliente().Cliente();
                 

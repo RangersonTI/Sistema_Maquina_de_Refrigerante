@@ -31,12 +31,12 @@ public class Maquina_Refrigerante_Cliente {
         }
         else{
             for(Produtos produtos: listaProdutos){
-                System.out.println(""+produtos.id+" - "+produtos.nome+"(R$"+produtos.valor_item+")");
+                System.out.println(""+produtos.id+" - "+produtos.nome+"(R$"+produtos.valor_item+") - (Disp.:"+produtos.QtdEstoque+")");
             }
             System.out.print("\n\n");
         }
         String leitura = ler.next();
-        
+
         if ("admin".equals(leitura)){
             Maquina_Refrigerante_Admin maq_adm = new Maquina_Refrigerante_Admin();
             maq_adm.TelaAdministrador();

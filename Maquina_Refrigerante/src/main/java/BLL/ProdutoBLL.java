@@ -4,6 +4,7 @@
  */
 package BLL;
 
+import DAL.EstoqueDAL;
 import DAL.ProdutosDAL;
 import Models.Produtos;
 import java.util.List;
@@ -21,7 +22,7 @@ public class ProdutoBLL {
         }
         else{
             if(_produto.valor_item<0.50){
-                JOptionPane.showMessageDialog(null,"Valor do item deve ser maior que 50C",null, JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Preço do produto deve ser maior que 50C",null, JOptionPane.ERROR_MESSAGE);
             }
             else{
               new ProdutosDAL().CadastrarProduto(_produto);
@@ -29,6 +30,21 @@ public class ProdutoBLL {
         }
     }
     
+    public void EditarPrecoProduto(int _id, double _novo_valor){
+
+        if(_novo_valor<0.50){
+            JOptionPane.showMessageDialog(null, "Preço do produto deve ser maior que 50C", null, JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            new ProdutosDAL().EditarPrecoProduto(_id,_novo_valor);
+        }
+    }
+    
+    public List<Produtos> BuscarTodosProdutos(){
+        return new ProdutosDAL().BuscarTodosProdutos();
+    }
+    
+  
     public List<Produtos> BuscarProdutos(){
         return new ProdutosDAL().BuscarProdutos();
     }
