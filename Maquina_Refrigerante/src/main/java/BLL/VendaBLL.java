@@ -5,6 +5,7 @@
 package BLL;
 import DAL.*;
 import Models.*;
+import java.util.List;
 import javax.swing.JOptionPane;
 /**
  *
@@ -23,5 +24,9 @@ public class VendaBLL {
             new VendaDAL().RealizarVenda(_id,_produto,qtd_solicitar,valor_a_pagar);
             JOptionPane.showMessageDialog(null, "Seu troco: "+(valor_a_pagar-total_a_pagar),"Informativo",JOptionPane.INFORMATION_MESSAGE);
         }
+    }
+
+    public List<Venda> RelatorioVendas(String data_inicial, String data_final){
+        return new VendaDAL().RelatorioVendas(data_inicial, data_final);
     }
 }

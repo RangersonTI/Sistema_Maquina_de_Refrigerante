@@ -21,7 +21,7 @@ public class Maquina_Refrigerante_Admin {
         Produtos _produto = new Produtos();
         NotasTroco _troco = new NotasTroco();
 
-        System.out.println("************ BEM-VINDO A MAQUINA DE REFRIGERANTES DO LUIS :) ************(modo administrador)");
+        System.out.println("\n************ BEM-VINDO A MAQUINA DE REFRIGERANTES DO LUIS :) ************ (modo administrador)");
         System.out.print("\n SELECIONE UMA OPÇÃO:\n\n");
         System.out.println("1 - Adicionar Novo Refrigerante");
         System.out.println("2 - Adicionar Troco ao Caixa");
@@ -94,7 +94,6 @@ public class Maquina_Refrigerante_Admin {
                 ProdutosDAL produtoDAL = new ProdutosDAL();
                 Produtos produto = produtoDAL.BuscarProdutoPorID(id);
 
-                System.out.println(produto.QtdEstoque+produto.nome);
                 if(produto.nome==null){
                     JOptionPane.showMessageDialog(null, "Produto informado é inválido", null, JOptionPane.ERROR_MESSAGE);
                     TelaAdministrador();
@@ -142,6 +141,33 @@ public class Maquina_Refrigerante_Admin {
                 }                
                 TelaAdministrador();
             case "5":
+                System.out.println("\n************ RELATÓRIO DE VENDA ************\n");
+                
+                System.out.print("\nInforme uma data inicial (format: y-m-d): ");
+                String data_inicial = ler.next();
+                System.out.print("Informe uma data final (format: y-m-d): ");
+                String data_final = ler.next();
+                
+                VendaBLL vendas = new VendaBLL();
+                List<Venda> vend_list = vendas.RelatorioVendas(data_inicial,data_final);
+                
+                
+                if(vendas==null){
+                    JOptionPane.showMessageDialog(null, "Nenhuma informção encontrada", null, JOptionPane.ERROR_MESSAGE);
+                    TelaAdministrador();
+                }
+                else{
+                    System.out.println("----------------------------------------------------------------------------------------");
+                    System.out.println("   ID  PROD(ID)  QTD COMPRADO  V.UNITÁRIO  V.COMPRA  V.PAGO  V.TROCO   DATA");
+                    System.out.println("----------------------------------------------------------------------------------------");
+                    for(Venda venda : vend_list){
+                        System.out.println("   "+venda.id+"   |   "+venda.cod_produto+"   |   "+venda.qtd_produto+"   |   "
+                                + "   |   "+venda.valor_unitario+"   |   "+venda.valor_compra+"   |   "+venda.valor_pago+"   |   "
+                                + "   |   "+venda.valor_troco+"   |   "+venda.data_venda+"\n");
+                    }
+                    System.out.print("-----------------------------------------------------------------");
+                }
+                
                 TelaAdministrador();
 
             case "6":

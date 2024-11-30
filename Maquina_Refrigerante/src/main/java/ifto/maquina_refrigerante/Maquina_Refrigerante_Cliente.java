@@ -62,18 +62,17 @@ public class Maquina_Refrigerante_Cliente {
                 int qtd_solicitar = ler.nextInt();
 
                 EstoqueBLL ha_estoque = new EstoqueBLL();
-                
+
                 if(!ha_estoque.VerificarEstoque(id_prod,qtd_solicitar)){
                     JOptionPane.showMessageDialog(null, "Quantidade solicitada maior que volume do estoque.", null, JOptionPane.ERROR_MESSAGE);
                     Cliente();
                 }
                 else{
+                    JOptionPane.showMessageDialog(null, "Valor Total: "+(qtd_solicitar*produto.valor_item),"Informativo",JOptionPane.INFORMATION_MESSAGE);
                     System.out.print("Valor a pagar: ");
                     double valor_a_pagar = ler.nextDouble();
-                    
                     VendaBLL vendaBLL = new VendaBLL();
                     vendaBLL.RealizarVenda(id_prod,produto,qtd_solicitar,valor_a_pagar);
-                    
                 }
             }
             Cliente();
