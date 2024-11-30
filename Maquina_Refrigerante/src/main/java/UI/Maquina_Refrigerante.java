@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package ifto.maquina_refrigerante;
+package UI;
 import java.io.IOException;
 /**
  *

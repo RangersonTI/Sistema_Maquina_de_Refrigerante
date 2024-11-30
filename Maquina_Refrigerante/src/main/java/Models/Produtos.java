@@ -15,6 +15,6 @@ public class Produtos {
     public String nome;
     public int QtdML;
     public int QtdEstoque;
-    public Double valor_item;
+    public double valor_item;
     List<Produtos> Produtos;
 }

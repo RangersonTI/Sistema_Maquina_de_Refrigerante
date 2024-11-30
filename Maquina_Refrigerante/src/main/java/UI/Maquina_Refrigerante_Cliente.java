@@ -2,12 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ifto.maquina_refrigerante;
+package UI;
 
 import Models.*;
 import BLL.*;
 import DAL.*;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
@@ -58,21 +59,29 @@ public class Maquina_Refrigerante_Cliente {
                 Cliente();
             }
             else{
-                System.out.print("\nQtd a solicitar: ");
-                int qtd_solicitar = ler.nextInt();
+                double[] valores_permitidos = {10.00,5.00,2.00,1.00,0.50};
+                double valor_a_pagar=0.0;
 
-                EstoqueBLL ha_estoque = new EstoqueBLL();
-
-                if(!ha_estoque.VerificarEstoque(id_prod,qtd_solicitar)){
+                if(!new EstoqueBLL().VerificarEstoque(id_prod,1)){
                     JOptionPane.showMessageDialog(null, "Quantidade solicitada maior que volume do estoque.", null, JOptionPane.ERROR_MESSAGE);
                     Cliente();
                 }
                 else{
-                    JOptionPane.showMessageDialog(null, "Valor Total: "+(qtd_solicitar*produto.valor_item),"Informativo",JOptionPane.INFORMATION_MESSAGE);
-                    System.out.print("Valor a pagar: ");
-                    double valor_a_pagar = ler.nextDouble();
+                    JOptionPane.showMessageDialog(null, "Valor Total: "+(produto.valor_item),"Informativo",JOptionPane.INFORMATION_MESSAGE);
+
+                    while(valor_a_pagar<produto.valor_item){
+                        System.out.print("Valor a pagar: ");
+                        double valor_parcial = ler.nextDouble();
+                        if(!Arrays.stream(valores_permitidos).anyMatch((double v) -> v == valor_parcial)){
+                            JOptionPane.showMessageDialog(null, "A maquina aceita apenas valores de: 10,5,2 reias ou moedas de 1 ou 0.50C", null, JOptionPane.ERROR_MESSAGE);
+                        }
+                        else{
+                            valor_a_pagar = valor_a_pagar+valor_parcial;
+                        }
+                    }
+
                     VendaBLL vendaBLL = new VendaBLL();
-                    vendaBLL.RealizarVenda(id_prod,produto,qtd_solicitar,valor_a_pagar);
+                    vendaBLL.RealizarVenda(id_prod,produto,1,valor_a_pagar);
                 }
             }
             Cliente();
