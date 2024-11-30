@@ -16,7 +16,7 @@ public class VendaBLL {
     public void RealizarVenda(int _id, Produtos _produto, int qtd_solicitar, double valor_a_pagar){
 
         double total_a_pagar = (_produto.valor_item * qtd_solicitar);
-        
+
         if(valor_a_pagar<total_a_pagar){
             JOptionPane.showMessageDialog(null,"Valor a pagar menor que valor da compra. (Total da compra: R$"+total_a_pagar+"\nOperação cancelada",null, JOptionPane.ERROR_MESSAGE);
         }

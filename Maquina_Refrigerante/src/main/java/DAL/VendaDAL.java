@@ -17,10 +17,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.text.SimpleDateFormat;
-import java.text.ParseException;
-import java.util.Date;
-import java.util.Calendar;
 
 /**
  *
@@ -66,7 +62,7 @@ public class VendaDAL {
 
     public List<Venda> RelatorioVendas(String data_inicial, String data_final){
         List<Venda> vendas_list = new ArrayList<>();
-        Venda venda = new Venda();
+        Venda venda;
 
         try{
             conexao = DriverManager.getConnection(caminho);
@@ -78,6 +74,7 @@ public class VendaDAL {
             ResultSet vendas = statement.executeQuery();
 
             while(vendas.next()){
+                venda = new Venda();
                 venda.id = vendas.getInt("id");
                 venda.cod_produto = vendas.getInt("cod_produto");
                 venda.qtd_produto = vendas.getInt("qtd_produto");
@@ -87,7 +84,6 @@ public class VendaDAL {
                 venda.valor_troco = vendas.getFloat("valor_troco");
                 venda.data_venda = vendas.getString("data_venda");
                 vendas_list.add(venda);
-                System.out.println(venda.cod_produto);
             }
         }
         catch(SQLException ex){

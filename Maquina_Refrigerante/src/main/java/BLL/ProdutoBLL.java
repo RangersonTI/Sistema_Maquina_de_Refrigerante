@@ -4,7 +4,6 @@
  */
 package BLL;
 
-import DAL.EstoqueDAL;
 import DAL.ProdutosDAL;
 import Models.Produtos;
 import java.util.List;

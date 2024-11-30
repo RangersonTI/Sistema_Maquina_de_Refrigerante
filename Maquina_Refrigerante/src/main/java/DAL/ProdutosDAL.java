@@ -58,7 +58,7 @@ public class ProdutosDAL {
             conexao = DriverManager.getConnection(caminho);
             Statement statement = conexao.createStatement();
             ResultSet produtos = statement.executeQuery("SELECT * FROM Produto WHERE QtdEstoque>0");
-            
+
             while(produtos.next()){
                 produto = new Produtos();
                 produto.id = produtos.getInt("id");
@@ -114,15 +114,13 @@ public class ProdutosDAL {
         return produtosModel;
     }
     
-    
-    
     public Produtos BuscarProdutoPorID(int _id){
         Produtos produto = new Produtos();
 
         try{
             conexao = DriverManager.getConnection(caminho);
             String sql = "SELECT * FROM Produto WHERE id=?";
-            
+
             PreparedStatement statement = conexao.prepareStatement(sql);
             statement.setDouble(1,_id);
             ResultSet prod = statement.executeQuery();

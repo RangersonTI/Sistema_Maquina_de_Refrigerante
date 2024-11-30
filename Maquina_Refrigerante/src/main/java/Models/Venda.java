@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Models;
+
+import java.util.List;
+
 /**
  *
  * @author Rangerson TI
@@ -16,4 +19,5 @@ public class Venda {
     public float valor_pago;
     public float valor_troco;
     public String data_venda;
+    List<Venda> venda;
 }

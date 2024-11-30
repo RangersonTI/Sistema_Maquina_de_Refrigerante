@@ -18,8 +18,8 @@ public class CriarBancoDeDados {
     private Connection conexao;
 
     public void CriarBancoDeDados(){
-        if(!new File("C:\\Users\\Rangerson TI\\Documents\\GitHub\\Sistema_Maquina_de_Refrigerante\\Maquina_Refrigerante\\banco_de_dados\\banco.db").exists()){
-            if(!new File("/home/202212160019@ifto.local/Documentos/GitHub/Sistema_Maquina_de_Refrigerante/Maquina_Refrigerante/banco_de_dados/banco.db").exists()){
+        if(!new File("banco_de_dados/banco.db").exists()){
+            if(!new File("banco_de_dados/banco.db").exists()){
                 try{
 
                     String caminho = "jdbc:sqlite:banco_de_dados/banco.db";

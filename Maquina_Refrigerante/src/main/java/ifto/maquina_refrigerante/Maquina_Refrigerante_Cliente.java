@@ -43,7 +43,7 @@ public class Maquina_Refrigerante_Cliente {
         }
         else{
             int id_prod=0;
-            
+
             try{
                 id_prod = Integer.parseInt(leitura);
             }
