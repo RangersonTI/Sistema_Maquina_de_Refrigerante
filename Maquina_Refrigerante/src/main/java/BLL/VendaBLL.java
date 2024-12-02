@@ -22,7 +22,8 @@ public class VendaBLL {
         }
         else{
             new VendaDAL().RealizarVenda(_id,_produto,qtd_solicitar,valor_a_pagar);
-            JOptionPane.showMessageDialog(null, "Seu troco: "+(valor_a_pagar-total_a_pagar),"Informativo",JOptionPane.INFORMATION_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "Seu troco: "+(valor_a_pagar-total_a_pagar),"Informativo",JOptionPane.INFORMATION_MESSAGE);
+            new NotasTrocoBLL().VerificarTroco(valor_a_pagar-total_a_pagar);
         }
     }
 
