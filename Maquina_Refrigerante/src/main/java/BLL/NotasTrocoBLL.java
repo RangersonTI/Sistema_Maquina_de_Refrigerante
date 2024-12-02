@@ -32,11 +32,11 @@ public class NotasTrocoBLL {
         return new NotasTrocoDAL().BuscarNotasTroco();
     }
     
-    public void VerificarTroco(double _troco){
+    public boolean VerificarTroco(double _troco){
 
         // Validar se o troco é maior que 0
         if (_troco <= 0) {
-            
+            return true;
         }
         else{
 
@@ -75,7 +75,9 @@ public class NotasTrocoBLL {
             // Verificar se sobrou troco
             if (trocoCentavos > 0) {
                 JOptionPane.showMessageDialog(null,"Não há notas ou moedas suficientes para o troco. Compra cancelada.",null, JOptionPane.ERROR_MESSAGE);
-            } else {
+                return false;
+            }
+            else {
                 System.out.println("Notas e moedas utilizadas para o troco:");
                 for (int i = 0; i < valores.length; i++) {
                     if (quantidadeUsada[i] > 0) {
@@ -84,22 +86,31 @@ public class NotasTrocoBLL {
                         } else {
                             valores_troco_qtd[i] = quantidadeUsada[i];
                         }
-                        
                     }
                 }
-            }
-                
-                // Passa para as variáveis de troco, a quatidade certa para cada
                 
                 troco_notas10 = valores_troco_qtd[0];
                 troco_notas5 = valores_troco_qtd[1];
                 troco_notas2 = valores_troco_qtd[2];
                 troco_moeda1 = valores_troco_qtd[3];
                 troco_moeda50C = valores_troco_qtd[4];
+                
+                notasTroco.qtd_cedula_dez= (notasTroco.qtd_cedula_dez-troco_notas10);
+                notasTroco.qtd_cedula_cinco = (notasTroco.qtd_cedula_cinco-troco_notas5);
+                notasTroco.qtd_cedula_dois =(notasTroco.qtd_cedula_cinco-troco_notas2);
+                notasTroco.qtd_moeda_um = (notasTroco.qtd_moeda_um-troco_moeda1);
+                notasTroco.qtd_moeda_cinquenta_cents = (notasTroco.qtd_moeda_cinquenta_cents-troco_moeda50C);
+                
+                new NotasTrocoDAL().SaidaDeTroco(notasTroco);
+                
                 JOptionPane.showMessageDialog(null, "Troco do cliente: "+_troco+"\n\nNotas de 10: "
                         + "                                     "+troco_notas10+"\nNotas de 5:"+troco_notas5+"\n"
                                                                 + "Notas de 2: "+troco_notas2+"\nMoedas de 1: "+troco_moeda1+"\n"
                                                                  + "Moedas de 50c: "+troco_moeda50C+"\n","Informativo",JOptionPane.INFORMATION_MESSAGE);
+        
+                return true;
+            }
+
         }
     }
 }

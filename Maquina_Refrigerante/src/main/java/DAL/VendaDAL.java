@@ -4,6 +4,7 @@
  */
 package DAL;
 
+import BLL.NotasTrocoBLL;
 import Models.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -33,20 +34,22 @@ public class VendaDAL {
             DateTimeFormatter formato_datahora = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             String datahora_atual = data_atual_obj.format(formato_datahora);
             double valor_compra = qtd_solicitado*_produto.valor_item;
-
             conexao = DriverManager.getConnection(caminho);
-            String sql = "INSERT INTO Vendas(cod_produto,qtd_produto,valor_unitario,valor_compra,valor_pago,valor_troco,data_venda) VALUES(?,?,?,?,?,?,?)";
-            PreparedStatement statement = conexao.prepareStatement(sql);
-            statement.setInt(1,_produto.id);
-            statement.setInt(2,qtd_solicitado);
-            statement.setDouble(3,_produto.valor_item);
-            statement.setDouble(4, valor_compra);
-            statement.setDouble(5,valor_a_pagar);
-            statement.setDouble(6,(valor_a_pagar-valor_compra));
-            statement.setString(7,datahora_atual);
-            statement.executeUpdate();
+            
+            if(new NotasTrocoBLL().VerificarTroco(valor_a_pagar-valor_compra)){
+                String sql = "INSERT INTO Vendas(cod_produto,qtd_produto,valor_unitario,valor_compra,valor_pago,valor_troco,data_venda) VALUES(?,?,?,?,?,?,?)";
+                PreparedStatement statement = conexao.prepareStatement(sql);
+                statement.setInt(1,_produto.id);
+                statement.setInt(2,qtd_solicitado);
+                statement.setDouble(3,_produto.valor_item);
+                statement.setDouble(4, valor_compra);
+                statement.setDouble(5,valor_a_pagar);
+                statement.setDouble(6,(valor_a_pagar-valor_compra));
+                statement.setString(7,datahora_atual);
+                statement.executeUpdate();
 
-            JOptionPane.showMessageDialog(null, "Venda realizada com sucesso","Informativo",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Venda realizada com sucesso","Informativo",JOptionPane.INFORMATION_MESSAGE);
+            }
         }
         catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Erro ao efetuar venda: "+ex, null, JOptionPane.ERROR_MESSAGE);

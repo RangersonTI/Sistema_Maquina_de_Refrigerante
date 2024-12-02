@@ -52,6 +52,32 @@ public class NotasTrocoDAL {
         }
     }
     
+    public void SaidaDeTroco(NotasTroco _troco){
+
+        try{
+            conexao = DriverManager.getConnection(caminho);
+            String sql = "UPDATE Qtd_Cedula_moeda_troco SET qtd_cedula_dez=?, qtd_cedula_cinco=?,"
+                        + "qtd_cedula_dois=?, qtd_moeda_um=?, qtd_moeda_cinquenta_cents=? WHERE id=1;";
+            PreparedStatement statement = conexao.prepareStatement(sql);
+            statement.setInt(1,_troco.qtd_cedula_dez);
+            statement.setInt(2,_troco.qtd_cedula_cinco);
+            statement.setInt(3,_troco.qtd_cedula_dois);
+            statement.setInt(4,_troco.qtd_moeda_um);
+            statement.setInt(5,_troco.qtd_moeda_cinquenta_cents);
+            statement.executeUpdate();
+        }
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, ex, "Erro ao atualizar quantidade de cedulas/moedas: ", JOptionPane.ERROR_MESSAGE);
+        }
+        finally{
+            try {
+                conexao.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ProdutosDAL.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
     public NotasTroco BuscarNotasTroco(){
         NotasTroco notaTroco = new NotasTroco();
 
