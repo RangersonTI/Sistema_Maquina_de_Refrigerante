@@ -4,6 +4,7 @@
  */
 package BLL;
 
+import Models.NotasTroco;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,11 +14,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
- * @author 202212160041@ifto.local
+ * @author LUIS FELIPE
  */
-public class EstoqueBLLTest {
+public class NotasTrocoBLLTest {
     
-    public EstoqueBLLTest() {
+    public NotasTrocoBLLTest() {
     }
     
     @BeforeAll
@@ -37,42 +38,43 @@ public class EstoqueBLLTest {
     }
 
     /**
-     * Test of EntradaDeEstoque method, of class EstoqueBLL.
+     * Test of EntradaDeTroco method, of class NotasTrocoBLL.
      */
     @Test
-    public void testEntradaDeEstoque() {
-        System.out.println("EntradaDeEstoque");
-        int _id = 0;
-        int QtdEstoqueEntrada = 0;
-        EstoqueBLL instance = new EstoqueBLL();
-        instance.EntradaDeEstoque(_id, QtdEstoqueEntrada);
+    public void testEntradaDeTroco() {
+        System.out.println("EntradaDeTroco");
+        NotasTroco _troco = null;
+        NotasTroco _trocoAnterior = null;
+        NotasTrocoBLL instance = new NotasTrocoBLL();
+        instance.EntradaDeTroco(_troco, _trocoAnterior);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of SaidaDeEstoque method, of class EstoqueBLL.
+     * Test of BuscarNotasTroco method, of class NotasTrocoBLL.
      */
     @Test
-    public void testSaidaDeEstoque() {
-        System.out.println("SaidaDeEstoque");
-        EstoqueBLL instance = new EstoqueBLL();
-        instance.SaidaDeEstoque();
+    public void testBuscarNotasTroco() {
+        System.out.println("BuscarNotasTroco");
+        NotasTrocoBLL instance = new NotasTrocoBLL();
+        NotasTroco expResult = null;
+        NotasTroco result = instance.BuscarNotasTroco();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of VerificarEstoque method, of class EstoqueBLL.
+     * Test of VerificarTroco method, of class NotasTrocoBLL.
      */
     @Test
-    public void testVerificarEstoque() {
-        System.out.println("VerificarEstoque");
-        int _id = 0;
-        int qtd_solicitado = 0;
-        EstoqueBLL instance = new EstoqueBLL();
+    public void testVerificarTroco() {
+        System.out.println("VerificarTroco");
+        double _troco = 0.0;
+        NotasTrocoBLL instance = new NotasTrocoBLL();
         boolean expResult = false;
-        boolean result = instance.VerificarEstoque(_id, qtd_solicitado);
+        boolean result = instance.VerificarTroco(_troco);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
