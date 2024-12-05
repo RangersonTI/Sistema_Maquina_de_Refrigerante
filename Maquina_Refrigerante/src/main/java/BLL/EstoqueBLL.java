@@ -27,6 +27,8 @@ public class EstoqueBLL {
 
     public void SaidaDeEstoque(){
         
+        
+        
     }
     
     public boolean VerificarEstoque(int _id, int qtd_solicitado){

@@ -4,7 +4,8 @@
  */
 package BLL;
 
-import Models.NotasTroco;
+import Models.Produtos;
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,11 +15,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
- * @author LUIS FELIPE
+ * @author 202212160041@ifto.local
  */
-public class NotasTrocoBLLTest {
-    private NotasTrocoBLL troco;
-    public NotasTrocoBLLTest() {
+public class ProdutoBLLTest {
+    
+    private ProdutoBLL produto;
+    
+    public ProdutoBLLTest() {
     }
     
     @BeforeAll
@@ -31,7 +34,9 @@ public class NotasTrocoBLLTest {
     
     @BeforeEach
     public void setUp() {
-        troco = new NotasTrocoBLL();
+        
+        produto = new ProdutoBLL();
+        
     }
     
     @AfterEach
@@ -39,24 +44,37 @@ public class NotasTrocoBLLTest {
     }
 
     /**
-     * Test of EntradaDeTroco method, of class NotasTrocoBLL.
-     */
-  
-
-    /**
-     * Test of BuscarNotasTroco method, of class NotasTrocoBLL.
+     * Test of CadastrarProduto method, of class ProdutoBLL.
      */
     @Test
-    public void testBuscarNotasTroco() {
-        
+    public void testCadastrarProduto() {
+       
     }
 
     /**
-     * Test of VerificarTroco method, of class NotasTrocoBLL.
+     * Test of EditarPrecoProduto method, of class ProdutoBLL.
      */
     @Test
-    public void testVerificarTroco() {
-      assertEquals(true, troco.VerificarTroco(5));
+    public void testEditarPrecoProduto() {
+       
+    }
+
+    /**
+     * Test of BuscarTodosProdutos method, of class ProdutoBLL.
+     */
+    @Test
+    public void testBuscarTodosProdutos() {
+        
+        assertEquals(1, )
+      
+    }
+
+    /**
+     * Test of BuscarProdutos method, of class ProdutoBLL.
+     */
+    @Test
+    public void testBuscarProdutos() {
+       
     }
     
 }

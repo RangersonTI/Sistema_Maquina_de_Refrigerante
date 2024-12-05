@@ -4,7 +4,6 @@
  */
 package BLL;
 
-import Models.NotasTroco;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,11 +13,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
- * @author LUIS FELIPE
+ * @author 202212160041@ifto.local
  */
-public class NotasTrocoBLLTest {
-    private NotasTrocoBLL troco;
-    public NotasTrocoBLLTest() {
+public class EstoqueBLLTest {
+    
+    private EstoqueBLL estoque;
+    
+    public EstoqueBLLTest() {
     }
     
     @BeforeAll
@@ -31,7 +32,9 @@ public class NotasTrocoBLLTest {
     
     @BeforeEach
     public void setUp() {
-        troco = new NotasTrocoBLL();
+        
+        estoque = new EstoqueBLL();
+        
     }
     
     @AfterEach
@@ -39,24 +42,29 @@ public class NotasTrocoBLLTest {
     }
 
     /**
-     * Test of EntradaDeTroco method, of class NotasTrocoBLL.
-     */
-  
-
-    /**
-     * Test of BuscarNotasTroco method, of class NotasTrocoBLL.
+     * Test of EntradaDeEstoque method, of class EstoqueBLL.
      */
     @Test
-    public void testBuscarNotasTroco() {
-        
+    public void testEntradaDeEstoque() {
+      
     }
 
     /**
-     * Test of VerificarTroco method, of class NotasTrocoBLL.
+     * Test of SaidaDeEstoque method, of class EstoqueBLL.
      */
     @Test
-    public void testVerificarTroco() {
-      assertEquals(true, troco.VerificarTroco(5));
+    public void testSaidaDeEstoque() {
+       
+    }
+
+    /**
+     * Test of VerificarEstoque method, of class EstoqueBLL.
+     */
+    @Test
+    public void testVerificarEstoque() {
+        
+        assertEquals(true, estoque.VerificarEstoque(1, 10));
+      
     }
     
 }
